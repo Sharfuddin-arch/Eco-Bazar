@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Eco Bazaar – About | Pure, Transparent, Sustainable</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a1a0a;
+  overflow-x: hidden;
+  color: #eef2e6;
+}
+
+/* header & top bar */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  background: #0f2e1a;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.logo-img {
+  width: 46px;
+  height: 46px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.logo-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #f5e6c8;
+}
+.logo-text span {
+  color: #d4a373;
+  font-weight: 500;
+}
+
+nav {
+  display: flex;
+  gap: 32px;
+}
+nav a {
+  color: #e8e0c8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
+  font-size: 0.95rem;
+}
+nav a:hover, nav a.active {
+  color: #d4a373;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+.cart-icon {
+  background: rgba(212,163,115,0.2);
+  padding: 8px 16px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.cart-icon:hover {
+  background: rgba(212,163,115,0.45);
+  transform: scale(1.02);
+}
+.cart-count {
+  background: #d4a373;
+  color: #0e2413;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.7rem;
+}
+
+/* video background */
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  filter: brightness(0.5) contrast(1.05);
+}
+.global-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 30%, rgba(10,26,10,0.7), rgba(5,18,8,0.85));
+  z-index: -1;
+}
+
+/* hero */
+.hero-section {
+  position: relative;
+  height: 45vh;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.hero-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(105deg, rgba(0,0,0,0.4), rgba(20,40,10,0.3));
+}
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff7e8, #d4a373);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 12px;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+/* about main */
+.about-section {
+  padding: 80px 60px 60px;
+}
+.about-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.about-text {
+  background: rgba(20, 35, 20, 0.65);
+  backdrop-filter: blur(14px);
+  border-radius: 42px;
+  padding: 48px 56px;
+  border: 1px solid rgba(212,163,115,0.4);
+  margin-bottom: 56px;
+}
+.about-text p {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  margin-bottom: 24px;
+  color: #f3efdd;
+}
+.highlight {
+  color: #f0c674;
+  font-weight: 600;
+}
+
+/* certification badges + source cards */
+.stats-cert-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin: 48px 0 56px;
+  justify-content: center;
+}
+.cert-badge {
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(12px);
+  border-radius: 48px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid rgba(212,163,115,0.55);
+  font-weight: 500;
+}
+.cert-badge span:first-child {
+  font-size: 2rem;
+}
+.source-links-card {
+  background: rgba(25, 45, 25, 0.78);
+  backdrop-filter: blur(12px);
+  border-radius: 36px;
+  padding: 32px 40px;
+  margin: 30px 0 40px;
+  border-left: 6px solid #d4a373;
+}
+.source-links-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #f0c674;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+.link-card {
+  background: rgba(255,255,240,0.05);
+  padding: 14px 18px;
+  border-radius: 28px;
+  transition: 0.2s;
+  border: 1px solid rgba(212,163,115,0.3);
+}
+.link-card a {
+  color: #f5e2b0;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+.link-card a:hover {
+  color: #d4a373;
+  text-decoration: underline;
+}
+.link-icon {
+  font-size: 1.6rem;
+}
+.data-ref {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  background: rgba(0,0,0,0.3);
+  border-radius: 28px;
+  padding: 18px 24px;
+}
+.data-ref-item {
+  font-size: 0.85rem;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* mission vision */
+.mission-vision {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 20px;
+}
+.mission-card, .vision-card {
+  background: rgba(30,50,28,0.7);
+  backdrop-filter: blur(8px);
+  padding: 38px 32px;
+  border-radius: 32px;
+  text-align: center;
+  transition: 0.25s;
+  border: 1px solid rgba(212,163,115,0.35);
+}
+.mission-card h3, .vision-card h3 {
+  font-size: 1.9rem;
+  font-family: 'Playfair Display', serif;
+  color: #f0c674;
+  margin-bottom: 16px;
+}
+
+/* values */
+.values-section {
+  padding: 60px 80px;
+}
+.values-title {
+  text-align: center;
+  margin-bottom: 55px;
+}
+.values-title h2 {
+  font-size: 2.6rem;
+  font-family: 'Playfair Display', serif;
+}
+.divider {
+  width: 80px;
+  height: 3px;
+  background: #d4a373;
+  margin: 14px auto;
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 45px;
+  max-width: 1300px;
+  margin: auto;
+}
+.value-item {
+  background: rgba(20,38,18,0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 28px;
+  padding: 40px 28px;
+  text-align: center;
+  transition: 0.3s;
+  border: 1px solid rgba(212,163,115,0.2);
+}
+.value-item:hover {
+  transform: translateY(-5px);
+  border-color: #d4a373;
+}
+.value-icon {
+  font-size: 3.2rem;
+  margin-bottom: 18px;
+}
+.value-item h4 {
+  font-size: 1.5rem;
+  color: #f0c674;
+  margin-bottom: 12px;
+}
+
+/* contact section */
+.contact-section {
+  background: rgba(12,32,14,0.9);
+  backdrop-filter: blur(5px);
+  padding: 55px 70px;
+  border-top: 1px solid #3a6040;
+}
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  max-width: 1300px;
+  margin: auto;
+}
+.contact-info h3 {
+  font-size: 1.9rem;
+  font-family: 'Playfair Display', serif;
+  color: #d4a373;
+}
+.contact-item {
+  display: flex;
+  gap: 14px;
+  margin: 18px 0;
+  align-items: center;
+}
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 28px;
+}
+.social-icon {
+  background: #2c5530;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+.map-container iframe {
+  width: 100%;
+  height: 260px;
+  border-radius: 24px;
+  border: none;
+}
+footer {
+  text-align: center;
+  padding: 28px;
+  font-size: 0.8rem;
+  background: #071407c9;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #2c5530;
+  padding: 12px 28px;
+  border-radius: 40px;
+  opacity: 0;
+  transition: 0.25s;
+  z-index: 2000;
+  color: white;
+  font-weight: 500;
+}
+.toast.show {
+  opacity: 1;
+}
+
+/* Floating Tracking Widget - YouTube style mini player */
+.tracking-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  background: linear-gradient(135deg, #1a3a1a, #0f2e1a);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  z-index: 100000;
+  border: 1px solid rgba(212,163,115,0.5);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  display: none;
+}
+.tracking-widget.minimized {
+  width: auto;
+  max-width: 200px;
+}
+.tracking-widget.minimized .widget-body {
+  display: none;
+}
+.widget-header {
+  padding: 12px 16px;
+  background: rgba(0,0,0,0.35);
+  border-radius: 20px 20px 0 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #f5e6c8;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.widget-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.widget-controls {
+  display: flex;
+  gap: 12px;
+}
+.widget-minimize, .widget-expand {
+  background: none;
+  border: none;
+  color: #d4a373;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 4px;
+  transition: 0.2s;
+}
+.widget-minimize:hover, .widget-expand:hover {
+  color: white;
+  transform: scale(1.1);
+}
+.widget-body {
+  padding: 16px;
+}
+.widget-status {
+  color: #d4a373;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.widget-progress {
+  background: rgba(255,255,255,0.15);
+  border-radius: 12px;
+  height: 6px;
+  margin: 12px 0;
+  overflow: hidden;
+}
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #d4a373, #f0c674);
+  border-radius: 12px;
+  transition: width 0.5s ease;
+}
+.widget-order-id {
+  font-size: 0.7rem;
+  color: #b8c4a8;
+  margin-top: 8px;
+  font-family: monospace;
+}
+.widget-view-btn {
+  width: 100%;
+  padding: 10px;
+  background: #2c5530;
+  border: 1px solid rgba(212,163,115,0.4);
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: 0.2s;
+}
+.widget-view-btn:hover {
+  background: #3a6b3a;
+  transform: scale(1.01);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.fade-up {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+@media (max-width: 850px) {
+  header { padding: 15px 25px; flex-direction: column; gap: 12px;}
+  nav { gap: 20px; flex-wrap: wrap; justify-content: center;}
+  .about-section { padding: 50px 25px; }
+  .about-text { padding: 32px 25px; }
+  .values-section { padding: 50px 25px; }
+  .values-grid { grid-template-columns: 1fr; gap: 28px; }
+  .mission-vision { grid-template-columns: 1fr; }
+  .contact-container { grid-template-columns: 1fr; }
+  .hero-content h1 { font-size: 2.5rem; }
+  .link-grid { grid-template-columns: 1fr; }
+  .stats-cert-row { flex-direction: column; align-items: center; }
+  .tracking-widget { width: 280px; right: 10px; bottom: 10px; }
+}
+</style>
+</head>
+<body>
+
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="videos/pb v5.mp4" type="video/mp4">
+</video>
+<div class="global-overlay"></div>
+
+<header>
+  <div class="logo" onclick="location.href='home.html'">
+    <div class="logo-img">
+      <img src="pictures/logo.png" alt="Eco Bazaar Logo">
+    </div>
+    <div class="logo-text">ECO BAZAAR<span> | organic</span></div>
+  </div>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+  <div class="header-right">
+    <div class="cart-icon" onclick="location.href='checkout.html'">
+      <span>🛒</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </div>
+  </div>
+</header>
+
+<div class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>About Eco Bazaar</h1>
+    <p>Rooted in nature • backed by trust & certifications</p>
+  </div>
+</div>
+
+<div class="about-section">
+  <div class="about-container">
+    <div class="about-text fade-up">
+      <p>Founded in <span class="highlight">2024</span>, Eco Bazaar emerged from a powerful mission: <span class="highlight">authentic organic products, absolute transparency, and farmer-first ethics</span>. In a market with misleading labels, we pioneered the <span class="highlight">Transparency Card™</span> – trace your product from seed to shelf.</p>
+      <p>Today, we partner with <span class="highlight">50+ certified organic farms</span> across Pakistan, from the fertile Punjab fields to pristine Gilgit valleys. We've eliminated <span class="highlight">15,000+ kg of single-use plastic</span> through zero-waste packaging. But our proudest achievement is your trust — backed by verifiable <strong>international certifications</strong> and direct farm linkages.</p>
+      <p><span class="highlight">Eco Bazaar is ISO 22000:2018 & HACCP certified</span> for food safety, and we're proud members of the <strong>Organic & Natural Products Association (ONPA)</strong>. Every item you buy meets Pakistan National Organic Standards & global equivalence.</p>
+    </div>
+
+    <div class="stats-cert-row">
+      <div class="cert-badge"><span>🌱</span> <span>ISO 22000:2018</span></div>
+      <div class="cert-badge"><span>🍃</span> <span>HACCP Certified</span></div>
+      <div class="cert-badge"><span>🏅</span> <span>PSQA Organic Compliant</span></div>
+      <div class="cert-badge"><span>🌿</span> <span>Zero Plastic Wastage</span></div>
+    </div>
+
+    <div class="source-links-card fade-up" style="animation-delay:0.1s">
+      <h3><span>🔗</span> Official Partners & Trusted Retailers</h3>
+      <p style="margin-bottom: 8px;">Direct sources for verified organic prices & certifications — shop with full transparency.</p>
+      <div class="link-grid">
+        <div class="link-card"><a href="https://himalayanchef.pk" target="_blank"><span class="link-icon">🏔️</span> Himalayan Chef – Organic flours, pink salt, spices</a></div>
+        <div class="link-card"><a href="#" target="_blank"><span class="link-icon">🫒</span> Khalis Food – Cold-pressed oils, pure ghee</a></div>
+        <div class="link-card"><a href="#" target="_blank"><span class="link-icon">🧴</span> Conatural – ISO certified organic skincare</a></div>
+        <div class="link-card"><a href="#" target="_blank"><span class="link-icon">🥑</span> N'ecos Natural Cuisine – Organic pantry, Karachi</a></div>
+        <div class="link-card"><a href="#" target="_blank"><span class="link-icon">🌾</span> The Earth's (Naheed) – Herbal powders, gluten-free</a></div>
+        <div class="link-card"><a href="#" target="_blank"><span class="link-icon">✨</span> Organic Traveller – Clean beauty serums</a></div>
+      </div>
+      <div class="data-ref">
+        <div class="data-ref-item"><span>📊</span> <strong>PBS - HIES Survey</strong> → Household spending insights (2025)</div>
+        <div class="data-ref-item"><span>🏦</span> <strong>State Bank of Pakistan</strong> → Retail & wellness market growth</div>
+        <div class="data-ref-item"><span>📈</span> <strong>ResearchandMarkets.com</strong> → Organic food premium trends / South Asia</div>
+      </div>
+      <p style="margin-top: 20px; font-size:0.85rem; opacity:0.9;">✅ All linked retailers are verified partners. Eco Bazaar aggregates real-time price visibility from these organic pioneers, ensuring you pay fair, transparent prices.</p>
+    </div>
+
+    <div class="mission-vision">
+      <div class="mission-card"><h3>🌾 Our Mission</h3><p>To democratize access to authentic organic products in Pakistan by building the most trusted, transparent, and eco-friendly marketplace that empowers local farmers and protects our planet.</p></div>
+      <div class="vision-card"><h3>🌟 Our Vision</h3><p>A Pakistan where every household chooses organic, every farm sustains naturally, and every product tells the truth about its journey from soil to soul.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="values-section">
+  <div class="values-title"><h2>Our Core Values</h2><div class="divider"></div></div>
+  <div class="values-grid">
+    <div class="value-item"><div class="value-icon">🔍</div><h4>Absolute Transparency</h4><p>Every product tells its story — provenance, certifications, and carbon footprint. No greenwashing.</p></div>
+    <div class="value-item"><div class="value-icon">🤝</div><h4>Farmer First</h4><p>Fair pricing, direct partnerships, and ethical sourcing. 30% of profits reinvested in rural organic training.</p></div>
+    <div class="value-item"><div class="value-icon">🌎</div><h4>Planet Positive</h4><p>Zero-waste packaging + carbon-neutral shipping. Our offset program plants a tree per order.</p></div>
+  </div>
+</div>
+
+<div class="contact-section">
+  <div class="contact-container">
+    <div class="contact-info">
+      <h3>Visit or Write to Us</h3>
+      <p style="opacity:0.9; margin-bottom: 20px;">🏬 Organic Discovery Hub – meet local farmers & certified brands</p>
+      <div class="contact-item"><span>📍</span> <span>IOBM University, Korangi Creek, Karachi, Pakistan</span></div>
+      <div class="contact-item"><span>📞</span> <span>+92 300 123 4567</span></div>
+      <div class="contact-item"><span>✉️</span> <span>hello@ecobazaar.pk</span></div>
+      <div class="contact-item"><span>🕒</span> <span>Mon–Sat: 10am–8pm | Sunday: organic farmers market</span></div>
+      <div class="social-links"><div class="social-icon">in</div><div class="social-icon">fb</div><div class="social-icon">ig</div><div class="social-icon">tw</div></div>
+    </div>
+    <div class="map-container">
+      <iframe src="https://maps.google.com/maps?q=IOBM+University+Korangi+Creek+Karachi&z=15&output=embed" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Eco Bazaar — Trusted marketplace for organic & sustainable living in Pakistan | Certified organic ecosystem</p>
+</footer>
+
+<!-- Floating Tracking Widget (YouTube-style minimizable) -->
+<div id="trackingWidget" class="tracking-widget" style="display: none;">
+  <div class="widget-header">
+    <div class="widget-header-left" onclick="toggleWidgetExpand()">
+      <span>📦</span>
+      <span>Order Tracking</span>
+    </div>
+    <div class="widget-controls">
+      <button class="widget-minimize" onclick="event.stopPropagation(); minimizeTrackingWidget()">−</button>
+    </div>
+  </div>
+  <div class="widget-body">
+    <div class="widget-status" id="widgetStatusMsg">Loading tracking...</div>
+    <div class="widget-progress"><div class="progress-bar" id="progressBarFill"></div></div>
+    <div class="widget-order-id" id="widgetOrderId"></div>
+    <button class="widget-view-btn" onclick="location.href='track order.html'">View Details →</button>
+  </div>
+</div>
+
+<div class="toast" id="cartToast">✨ Item added to cart!</div>
+
+<script>
+  // Cart Functions
+  function updateCartCount() {
+    let cart = JSON.parse(sessionStorage.getItem('ecobazaar_cart') || '[]');
+    let totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    const cartCountSpan = document.getElementById('cartCount');
+    if (cartCountSpan) cartCountSpan.innerText = totalItems;
+  }
+  function showToast(msg) {
+    const toastEl = document.getElementById('cartToast');
+    if (toastEl) {
+      toastEl.innerText = msg || '✨ Item added to cart!';
+      toastEl.classList.add('show');
+      setTimeout(() => toastEl.classList.remove('show'), 2200);
+    }
+  }
+  window.addToCart = function(productName, variant, price, quantity, image) {
+    let cart = JSON.parse(sessionStorage.getItem('ecobazaar_cart') || '[]');
+    cart.push({
+      id: Date.now() + Math.random() * 1000,
+      name: productName,
+      variant: variant || 'standard',
+      price: price,
+      quantity: quantity || 1,
+      image: image || ''
+    });
+    sessionStorage.setItem('ecobazaar_cart', JSON.stringify(cart));
+    updateCartCount();
+    showToast(`${productName} added to cart!`);
+  };
+  updateCartCount();
+
+  // Tracking Widget Logic
+  function getActiveOrder() {
+    let order = localStorage.getItem('ecobazaar_active_order');
+    return order ? JSON.parse(order) : null;
+  }
+
+  function updateWidgetDisplay() {
+    const order = getActiveOrder();
+    const widget = document.getElementById('trackingWidget');
+    if (!order || order.status === 'delivered') {
+      if (widget) widget.style.display = 'none';
+      return;
+    }
+    if (widget) widget.style.display = 'block';
+    
+    // Calculate remaining time
+    const placedDate = new Date(order.placedAt);
+    const now = new Date();
+    const hoursPassed = (now - placedDate) / (1000 * 60 * 60);
+    const estimatedHours = order.estimatedDeliveryDays * 24;
+    let hoursRemaining = Math.max(0, estimatedHours - hoursPassed);
+    let message = '';
+    let progressPercent = 100;
+    
+    if (hoursRemaining >= 24) {
+      let daysLeft = Math.ceil(hoursRemaining / 24);
+      message = `🚚 Will deliver in ${daysLeft} day${daysLeft > 1 ? 's' : ''}`;
+      progressPercent = ((estimatedHours - hoursRemaining) / estimatedHours) * 100;
+    } else if (hoursRemaining > 0) {
+      message = `🚚 Delivery in ${Math.ceil(hoursRemaining)} hours`;
+      progressPercent = ((estimatedHours - hoursRemaining) / estimatedHours) * 100;
+    } else {
+      message = `📦 Out for delivery! Arriving today`;
+      progressPercent = 95;
+      if (order.status !== 'out_for_delivery') {
+        order.status = 'out_for_delivery';
+        localStorage.setItem('ecobazaar_active_order', JSON.stringify(order));
+      }
+    }
+    
+    document.getElementById('widgetStatusMsg').innerText = message;
+    document.getElementById('progressBarFill').style.width = Math.min(progressPercent, 98) + '%';
+    document.getElementById('widgetOrderId').innerText = `Order: ${order.orderId}`;
+  }
+
+  function minimizeTrackingWidget() {
+    const widget = document.getElementById('trackingWidget');
+    if (widget) {
+      widget.classList.add('minimized');
+      const minimizeBtn = widget.querySelector('.widget-minimize');
+      if (minimizeBtn) minimizeBtn.innerText = '+';
+      minimizeBtn.onclick = (e) => {
+        e.stopPropagation();
+        expandTrackingWidget();
+      };
+    }
+  }
+  
+  function expandTrackingWidget() {
+    const widget = document.getElementById('trackingWidget');
+    if (widget) {
+      widget.classList.remove('minimized');
+      const expandBtn = widget.querySelector('.widget-minimize');
+      if (expandBtn) expandBtn.innerText = '−';
+      expandBtn.onclick = (e) => {
+        e.stopPropagation();
+        minimizeTrackingWidget();
+      };
+    }
+  }
+  
+  function toggleWidgetExpand() {
+    const widget = document.getElementById('trackingWidget');
+    if (widget && widget.classList.contains('minimized')) {
+      expandTrackingWidget();
+    }
+  }
+  
+  // Update every 30 seconds
+  setInterval(updateWidgetDisplay, 30000);
+  updateWidgetDisplay();
+
+  const bgVideo = document.querySelector('.bg-video');
+  if(bgVideo) bgVideo.playbackRate = 0.7;
+</script>
+</body>
+</html>

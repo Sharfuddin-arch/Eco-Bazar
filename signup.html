@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Eco Bazaar | Sign Up – Join the Organic Community</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    filter: brightness(1.05) contrast(1.02) saturate(1.08);
+  }
+
+  .video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(125deg, rgba(30, 55, 28, 0.4), rgba(18, 38, 20, 0.5));
+    z-index: -1;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 60px;
+    background: rgba(15, 46, 26, 0.75);
+    backdrop-filter: blur(12px);
+    color: white;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .logo-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(145deg, #d4a373, #b5835a);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Logo image style - REPLACE 'logo-image.png' WITH YOUR ACTUAL LOGO FILE PATH */
+  .logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Fallback icon in case image fails to load or while testing */
+  .logo-icon .fallback-icon {
+    font-size: 1.8rem;
+    display: none;
+  }
+
+  /* If image is present, hide fallback. Simple approach: image on top */
+  .logo-icon.has-img .fallback-icon {
+    display: none;
+  }
+
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #f5e6c8;
+  }
+
+  .logo-text span {
+    color: #d4a373;
+  }
+
+  nav {
+    display: flex;
+    gap: 32px;
+  }
+
+  nav a {
+    color: #e8e0c8;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: 0.2s;
+  }
+
+  nav a:hover {
+    color: #d4a373;
+  }
+
+  .signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    padding: 60px 24px;
+  }
+
+  .signup-card {
+    background: rgba(20, 35, 25, 0.7);
+    backdrop-filter: blur(18px);
+    border-radius: 48px;
+    padding: 48px 52px;
+    width: 100%;
+    max-width: 520px;
+    border: 1px solid rgba(212, 163, 115, 0.55);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    animation: fadeUp 0.8s ease;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(35px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .signup-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(212, 163, 115, 0.85);
+  }
+
+  .signup-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .signup-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: #f5e6c8;
+    margin-bottom: 12px;
+  }
+
+  .signup-header p {
+    color: #e2ecd2;
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .leaf-decoration {
+    width: 50px;
+    height: 2px;
+    background: #d4a373;
+    margin: 16px auto 0;
+    border-radius: 4px;
+  }
+
+  .input-group {
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #faf3df;
+    letter-spacing: 0.3px;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(212, 163, 115, 0.5);
+    border-radius: 40px;
+    font-size: 0.95rem;
+    color: #fef9e6;
+    font-family: 'Inter', sans-serif;
+    transition: 0.25s;
+    outline: none;
+  }
+
+  .input-group input:focus {
+    border-color: #e6b27a;
+    background: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.3);
+  }
+
+  .input-group input::placeholder {
+    color: rgba(235, 220, 180, 0.65);
+  }
+
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0 28px;
+  }
+
+  .checkbox-group input {
+    width: 18px;
+    height: 18px;
+    accent-color: #d4a373;
+    cursor: pointer;
+  }
+
+  .checkbox-group label {
+    font-size: 0.8rem;
+    color: #e2ecd2;
+    cursor: pointer;
+  }
+
+  .checkbox-group a {
+    color: #f5cf8c;
+    text-decoration: none;
+  }
+
+  .signup-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(95deg, #d4a373, #b5835a);
+    border: none;
+    border-radius: 40px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #102412;
+    cursor: pointer;
+    transition: 0.25s;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+  }
+
+  .signup-btn:hover {
+    transform: scale(1.02);
+    background: linear-gradient(95deg, #e0b081, #c49262);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  }
+
+  .login-redirect {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #dae6cb;
+  }
+
+  .login-redirect a {
+    color: #f5cf8c;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .login-redirect a:hover {
+    text-decoration: underline;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 28px 0 20px;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(212, 163, 115, 0.5);
+  }
+
+  .divider-text {
+    font-size: 0.75rem;
+    color: #d8debf;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .social-circle {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid rgba(212, 163, 115, 0.45);
+    color: #f2ebd2;
+  }
+
+  .social-circle:hover {
+    background: #d4a373;
+    color: #0a1a0a;
+    transform: translateY(-3px);
+  }
+
+  footer {
+    text-align: center;
+    padding: 22px;
+    background: rgba(9, 32, 16, 0.7);
+    color: #cad5b5;
+    font-size: 0.75rem;
+    backdrop-filter: blur(4px);
+    border-top: 1px solid #2c5530;
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #2c5530;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    z-index: 1000;
+    opacity: 0;
+    transition: 0.25s;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+  }
+
+  .toast.show {
+    opacity: 1;
+  }
+
+  @media (max-width: 650px) {
+    header {
+      padding: 15px 25px;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    nav {
+      gap: 22px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .signup-card {
+      padding: 36px 28px;
+      margin: 0 16px;
+    }
+    .signup-header h1 {
+      font-size: 1.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="videos/pb v6.mp4" type="video/mp4">
+</video>
+<div class="video-overlay"></div>
+
+<header>
+  <div class="logo" onclick="location.href='home.html'">
+    <div class="logo-icon" id="logoIcon">
+      <!-- === LOGO IMAGE PLACEHOLDER === -->
+      <!-- REPLACE 'images/eco-logo.png' WITH YOUR ACTUAL LOGO FILE PATH -->
+      <img class="logo-img" src="pictures/logo.png" alt="Eco Bazaar Logo" onerror="handleLogoError()">
+      <span class="fallback-icon">🌿</span>
+    </div>
+    <div class="logo-text">ECO BAZAAR<span> | organic</span></div>
+  </div>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="signup-container">
+  <div class="signup-card">
+    <div class="signup-header">
+      <h1>Join the Green Circle</h1>
+      <p>Create an account & get 15% off your first organic order</p>
+      <div class="leaf-decoration"></div>
+    </div>
+
+    <form id="signupForm">
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" id="fullName" placeholder="Ayesha Khan" required>
+      </div>
+
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="hello@ecobazaar.pk" required>
+      </div>
+
+      <div class="input-group">
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="+92 3XX XXXXXXX">
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="··········" required>
+      </div>
+
+      <div class="input-group">
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="termsCheckbox">
+        <label for="termsCheckbox">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+      </div>
+
+      <button type="submit" class="signup-btn">🌱 Sign Up – Start Organic Journey</button>
+
+      <div class="login-redirect">
+        Already have an account? <a href="login.html">Log in</a>
+      </div>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">or sign up with</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="social-icons">
+        <div class="social-circle">G</div>
+        <div class="social-circle">f</div>
+        <div class="social-circle">in</div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Eco Bazaar — Rooted in nature, growing together. 🌍</p>
+</footer>
+
+<div class="toast" id="signupToast">🎉 Account created! Welcome to the community.</div>
+
+<script>
+  (function() {
+    const form = document.getElementById('signupForm');
+    const toast = document.getElementById('signupToast');
+
+    function showMessage(message, isError = false) {
+      if (toast) {
+        toast.innerText = message || (isError ? '⚠️ Something went wrong' : '🎉 Account created! Welcome to the community.');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2800);
+      } else {
+        alert(message);
+      }
+    }
+
+    function storeUser(userData) {
+      let users = JSON.parse(localStorage.getItem('ecobazaar_users') || '[]');
+      const existing = users.find(u => u.email === userData.email);
+      if (existing) {
+        throw new Error('Email already registered. Please log in.');
+      }
+      users.push(userData);
+      localStorage.setItem('ecobazaar_users', JSON.stringify(users));
+      sessionStorage.setItem('ecobazaar_current_user', JSON.stringify({ name: userData.name, email: userData.email }));
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPwd = document.getElementById('confirmPassword').value;
+      const termsChecked = document.getElementById('termsCheckbox').checked;
+
+      if (!fullName) {
+        showMessage('❌ Please enter your full name', true);
+        return;
+      }
+      if (!email) {
+        showMessage('❌ Email address is required', true);
+        return;
+      }
+      if (!email.includes('@') || !email.includes('.')) {
+        showMessage('❌ Enter a valid email address', true);
+        return;
+      }
+      if (password.length < 6) {
+        showMessage('❌ Password must be at least 6 characters', true);
+        return;
+      }
+      if (password !== confirmPwd) {
+        showMessage('❌ Passwords do not match', true);
+        return;
+      }
+      if (!termsChecked) {
+        showMessage('📜 Please accept the Terms & Privacy Policy to continue', true);
+        return;
+      }
+
+      const newUser = {
+        name: fullName,
+        email: email,
+        phone: phone,
+        password: btoa(password),
+        createdAt: new Date().toISOString()
+      };
+
+      try {
+        storeUser(newUser);
+        showMessage('🌿 Welcome to Eco Bazaar! Redirecting...');
+        form.reset();
+        setTimeout(() => {
+          window.location.href = 'home.html';
+        }, 1500);
+      } catch (err) {
+        showMessage(err.message || 'Signup failed. Try again.', true);
+      }
+    });
+
+    const socialBtns = document.querySelectorAll('.social-circle');
+    socialBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        showMessage('🔐 Social signup demo — connect soon!');
+      });
+    });
+
+    // Logo error handling: if image fails to load, show fallback leaf icon
+    window.handleLogoError = function() {
+      const logoIconDiv = document.getElementById('logoIcon');
+      const imgElement = logoIconDiv.querySelector('.logo-img');
+      const fallbackSpan = logoIconDiv.querySelector('.fallback-icon');
+      if (imgElement) {
+        imgElement.style.display = 'none';
+      }
+      if (fallbackSpan) {
+        fallbackSpan.style.display = 'inline-flex';
+        fallbackSpan.style.alignItems = 'center';
+        fallbackSpan.style.justifyContent = 'center';
+        fallbackSpan.style.width = '100%';
+        fallbackSpan.style.height = '100%';
+        fallbackSpan.style.fontSize = '1.8rem';
+      }
+    };
+
+    // If image fails to load initially, ensure fallback shows
+    const logoImg = document.querySelector('.logo-img');
+    if (logoImg) {
+      logoImg.onerror = function() {
+        handleLogoError();
+      };
+    }
+  })();
+</script>
+
+
+</body>
+</html>
